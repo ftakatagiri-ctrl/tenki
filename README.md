@@ -1,32 +1,31 @@
-# React + TypeScript + Vite
+# そらナビ - React 天気予報アプリ
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## StackBlitzでの起動
+1. StackBlitzで **Create Project → Vite → React + TypeScript** を選択します。
+2. このZIP内のファイルを同じ階層・フォルダ構成でアップロードし、既存ファイルを置き換えます。
+3. `package.json` の依存パッケージがインストールされたら、プレビューが起動します。
+4. ローカルで動かす場合は `npm install` → `npm run dev`。
 
-Currently, two official plugins are available:
+## 主な機能
+- 都市名検索（日本語対応）
+- ブラウザの位置情報による現在地検索
+- 現在の気温・体感温度・天気・湿度・風速・降水量
+- 今日の時間別予報（12時間）
+- 7日間の週間予報、日の出・日の入り、UV指数
+- iPhone / Android を含むスマートフォン向けレスポンシブ表示
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 天気データ
+Open-Meteo の Forecast API と Geocoding API を使用しています。APIキーは不要です。
+- https://open-meteo.com/
+- 都市検索: https://geocoding-api.open-meteo.com/v1/search
+- 天気予報: https://api.open-meteo.com/v1/forecast
 
-## React Compiler
+## 位置情報について
+現在地ボタンを使うには、ブラウザで位置情報の利用を許可してください。位置情報はHTTPSまたはlocalhostで利用できます。拒否した場合も都市名検索は利用できます。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## StackBlitzで変更するファイル
+- `src/App.tsx`: 天気取得、都市検索、位置情報、画面構成
+- `src/App.css`: 色・レイアウト・レスポンシブデザイン
+- `package.json`: React / Vite / TypeScript と起動コマンド
+- `vite.config.ts`, `tsconfig.json`, `tsconfig.node.json`: Vite・TypeScript設定
+- `index.html`: 日本語設定、スマートフォン表示設定
